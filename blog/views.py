@@ -4,7 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.views.generic import ListView,DetailView,UpdateView,DeleteView
 from django.views.generic.edit import CreateView
-from . models import Post
+from .models import Post
 # Create your views here.
 
 class BlogListView(ListView):
