@@ -2,9 +2,33 @@
 {% block title %} Blog {% endblock title %}
 {% block content %}
     {% for post in object_list %}
-        <div class="post-entry">
-            <h2><a href="{{post.get_absolute_url}}">{{ post.titulo }}</a></h2>
+        <div class="post-preview">
+            <a href="{{post.get_absolute_url}}">
+              <h2 class="post-title">
+               {{ post.titulo }}
+              </h2>
+              <h3 class="post-subtitle">
+                    {{ post.conteudo }}
+              </h3>
+            </a>
+            <p class="post-meta">Posted by
+              <a href="#">Start Bootstrap</a>
+              on July 8, 2019</p>
+        </div>
+        <hr>
+    {% endfor %}
+    <div class="clearfix">
+      <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+    </div>
+{% endblock content %}
+
+<!--
+  <div class="post-entry">
+            <h2><a href="{{post.get_absolute_url}}"></a></h2>
             <p>{{ post.conteudo }} </p>
         </div>
-    {% endfor %}
-{% endblock content %}
+
+             
+           
+            
+-->
