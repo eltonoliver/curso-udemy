@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
+{% load bootstrap %}
 {% block title %} Blog - Nova Postagem {% endblock title %}
 {% block content %}
-<h1>Nova Postagem</h1>
-<form action="" method="post">{% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Salvar">
-</form>
+<div class="container justify-content-center">
+        <div class="card" >
+          <div class="card-header">
+              <h1>Nova Postagem</h1>
+          </div>
+          <div class="card-body">
+                <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    {{form|bootstrap}}
+                    <input type="submit" value="Cadastrar" class="btn btn-primary">
+                </form>  
+            </div>    
+     </div>
+</div>
 {% endblock content %}

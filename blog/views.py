@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.views.generic import ListView,DetailView,UpdateView,DeleteView
 from django.views.generic.edit import CreateView
 from .models import Post
+from .forms import Postform
 # Create your views here.
 
 class BlogListView(ListView):
@@ -19,8 +20,14 @@ class BlogDetailView(DetailView):
 class BlogCreateView(SuccessMessageMixin,CreateView):
     model = Post
     template_name = 'blog/post_new.html'
-    fields = ('autor','titulo','conteudo')
+    form_class = Postform
     success_message = "%(field)s - criado com sucesso"
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.autor = self.request.user
+        obj.save()
+        return super().form_valid(form)
 
     def get_success_message(self, cleaned_data):
         return self.success_message % dict(
@@ -30,9 +37,16 @@ class BlogCreateView(SuccessMessageMixin,CreateView):
 
 class BlogUpdateView(SuccessMessageMixin,UpdateView):
     model = Post
+    form_class = Postform
     template_name = 'blog/post_edit.html'
-    fields = ('titulo','conteudo')
+    #fields = ('titulo','conteudo')
     success_message = "%(field)s - alterado com sucesso"
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.autor = self.request.user
+        obj.save()
+        return super().form_valid(form)
 
     def get_success_message(self, cleaned_data):
         return self.success_message % dict(

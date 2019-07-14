@@ -10,7 +10,7 @@
         {% endif %}
         <div class="post-entry">
             <h2>{{ object.titulo }}</h2>
-            <p>{{ object.conteudo }} </p>
+            <p>{{ object.conteudo|safe }} </p>
         </div>
         <a href="{{ object.get_absolute_url_update }}">+ Editar Postagem do Blog </a><br>
         <a href="{% url 'post_delete' object.pk %}"> Deletar Postagem do Blog </a>
