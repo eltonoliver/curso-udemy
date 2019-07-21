@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block title %} Blog {% endblock title %}
+{% block header %}
+ <!-- Page Header -->
+ <header class="masthead" style="background-image: url({% static 'img/contact-bg.jpg' %})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Entre em contato conosco</h1>
+            <span class="subheading">Tem alguma pergunta?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock header %}
+{% block content %} 
+
+  <!-- Main Content -->
+  <div class="container">      
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">      
+             
+              <form method="POST" action="{% url 'contact' %}">{% csrf_token %}      
+              {{form|bootstrap}}
+              <br>
+              {% if success %}
+              <div id="success">
+                E-mail enviado com sucesso!
+              </div>
+              {% else %}
+              <div id="fail">
+                  Erro ao enviar seu e-mail!
+              </div>
+              {% endif %}
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="sendMessageButton">Enviar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>  
+
+{% endblock content %}
+

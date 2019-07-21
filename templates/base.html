@@ -31,21 +31,14 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
-              </li>
+              </li>            
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="post.html">Sample Post</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="contact.html">Contato</a>
               </li>   
               {% if user.is_authenticated %}
                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'post_new' %}">+ Nova Postagem no Blog</a>
-                </li>
-                <li class="nav-item">{{user.username}}</li>
+                    <a class="nav-link" href="{% url 'post_new' %}">Nova Postagem no Blog</a>
+                </li>              
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">logout</a></li>
               {% else %}
                   <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">login</a></li>
@@ -55,20 +48,7 @@
         </div>
       </nav>
     
-      <!-- Page Header -->
-      <header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %})">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-              <div class="site-heading">
-                <h1>Clean Blog</h1>
-                <span class="subheading">A Blog Theme by Start Bootstrap</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+     {% block header %} {% endblock header%}
     
       <!-- Main Content -->
       <div class="container">
@@ -87,6 +67,7 @@
           <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
               <ul class="list-inline text-center">
+               {% if TWITTER %}  
                 <li class="list-inline-item">
                   <a href="#">
                     <span class="fa-stack fa-lg">
@@ -95,6 +76,8 @@
                     </span>
                   </a>
                 </li>
+                {% endif %}
+                {% if FACEBOOK %}  
                 <li class="list-inline-item">
                   <a href="#">
                     <span class="fa-stack fa-lg">
@@ -103,6 +86,8 @@
                     </span>
                   </a>
                 </li>
+                {% endif %}
+                {% if GITHUB %}  
                 <li class="list-inline-item">
                   <a href="#">
                     <span class="fa-stack fa-lg">
@@ -111,6 +96,7 @@
                     </span>
                   </a>
                 </li>
+                {% endif %}
               </ul>
               <p class="copyright text-muted">Copyright &copy; Curso de Django 2019</p>
             </div>
